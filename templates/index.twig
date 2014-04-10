@@ -1,0 +1,95 @@
+{# Copyright (C) 2012 - 2013 Open Source Matters, Inc. All rights reserved. #}
+{# GNU General Public License version 2 or later; see LICENSE.txt #}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="blue" />
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ uri.base.path }}templates/assets/images/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ uri.base.path }}templates/assets/images/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ uri.base.path }}templates/assets/images/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ uri.base.path }}templates/assets/images/apple-touch-icon-57-precomposed.png">
+
+    <link href="{{ uri.base.path }}templates/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ uri.base.path }}templates/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="{{ uri.base.path }}templates/assets/css/theme.css" rel="stylesheet">
+    {% block headerCSS %}{% endblock %}
+
+    {% block JavaScriptBottom %}
+        <script src="{{ uri.base.path }}templates/assets/js/jquery.min.js"></script>
+        <script src="{{ uri.base.path }}templates/assets/bootstrap/js/bootstrap.min.js"></script>
+    {% endblock %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="<?php echo NUri::root().'themes/'.$this->template; ?>/js/html5shiv.js"></script>
+    <script src="<?php echo NUri::root().'themes/'.$this->template; ?>/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="site">
+    {% block nav %}
+        <nav class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a href="{{ uri.base.path }}dashboard" class="brand">
+                    <span class="first">J!</span>
+                    <span class="second">Translator</span>
+                </a>
+
+                {% block topnav %}
+                    {% include "topMenu.twig" %}
+                {% endblock %}
+            </div>
+        </nav>
+    {% endblock %}
+
+    <div class="sidebar-nav">
+        {% block sidebar %}
+            {% include "sidebarMenu.twig" %}
+        {% endblock %}
+    </div>
+
+    <div class="content">
+        <div class="header">
+            {% block title %}<h1 class="page-title">J!Translator</h1>{% endblock %}
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+
+                {% for type, flashMessages in flashBag %}
+                    {% for flashMessage in flashMessages %}
+                        <div class="alert alert-{{ type }}">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                <noscript><h2 class="alert">Please activate JavaScript in your browser.</h2></noscript>
+
+                <div class="btn-toolbar">
+                    {% block toolbar %}
+                        {% block prependMenu %}{% endblock %}
+                    {% endblock %}
+                </div>
+
+                {% block content %}{% endblock %}
+
+                <!-- @todo find a way to replace debug output after processing the renderer -->
+                <div class="debug">%%%DEBUG%%%</div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block footer %}
+        <footer>
+            <hr>
+            {% include "footerMenu.twig" %}
+        </footer>
+    {% endblock %}
+</body>
+</html>

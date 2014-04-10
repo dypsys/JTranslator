@@ -1,0 +1,36 @@
+{
+    "name": "joomla-translator",
+    "description": "App for managing translations joomla.",
+    "keywords": ["translator-joomla"],
+    "homepage": "http://www.joomla.org",
+    "license": "GPL-2.0+",
+	"version": "1.0.0",
+    "require": {
+        "php": ">=5.3.10",
+        "joomla/framework": "1.0.*@stable",
+        "symfony/http-foundation": "2.3.*@stable",
+        "twig/twig": "1.*@stable"
+    },
+    "require-dev": {
+        "monolog/monolog": "1.6.0",
+        "raveren/kint": "0.9",
+        "filp/whoops": "1.0.*@stable",
+        "mustache/mustache" : "2.1.*"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Translator\\Setup\\InstallScript::postInstall"
+        ]
+    },
+    "autoload": {
+        "psr-0": {
+            "Joomla": "libraries/",
+            "Translator": "libraries/",
+            "App": ""
+        }
+    },
+    "config": {
+        "vendor-dir": "libraries/"
+    },
+    "minimum-stability": "dev"
+}

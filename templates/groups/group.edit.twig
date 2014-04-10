@@ -1,0 +1,41 @@
+{# Copyright (C) 2013 - 2013 Open Source Matters, Inc. All rights reserved. #}
+{# GNU General Public License version 2 or later; see LICENSE.txt #}
+
+{% extends "index.twig" %}
+
+{% block title %}
+    <h1 class="page-title">
+    {% if group.group_id %}
+        {{ "Edit Group"|_ }}
+    {% else %}
+        {{ "Add Group"|_ }}
+    {% endif %}
+    </h1>
+{% endblock %}
+
+{% block toolbar %}
+    <a class="btn btn-primary" href="javascript:" onclick="document.editForm.submit();"><i class="icon-save"></i> {{ "Save"|_ }}</a>
+    {% if group.group_id %}
+        <a href="{{ uri.base.path }}group/{{group.group_id }}/delete" class="btn btn-danger"><i class="icon-remove"></i> {{ "Delete"|_ }}</a>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+
+    <form method="post" action="{{ uri.base.path }}savegroup" class="form-horizontal" name="editForm">
+        <fieldset>
+            <legend>{{ "Details"|_ }}</legend>
+            <div class="control-group">
+                <label class="control-label" for="title">{{ "Title"|_ }}</label>
+                <div class="controls">
+                    <input type="text" name="group[title]" id="title" value="{{ group.title }}">
+                </div>
+            </div>
+
+            <input type="hidden" name="group[group_id]" value="{{ group.group_id }}">
+            <input type="hidden" name="group[system]" value="{{ group.system }}">
+        </fieldset>
+    </form>
+{% endblock %}

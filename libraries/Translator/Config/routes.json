@@ -1,0 +1,21 @@
+{
+    "dashboard"             : "\\Dashboard\\Controller\\Dashboard",
+
+    "users"                 : "\\Users\\Controller\\Users",
+    "user"                  : "\\Users\\Controller\\User",
+    "users/list"            : "\\Users\\Controller\\Ajax\\Listing",
+    "user/:id"              : "\\Users\\Controller\\User",
+    "adduser"               : "\\Users\\Controller\\User\\Add",
+    "login"                 : "\\Users\\Controller\\Login",
+    "logout"                : "\\Users\\Controller\\Logout",
+
+    "groups"                : "\\Groups\\Controller\\Groups",
+    "group/:group_id"       : "\\Groups\\Controller\\Group",
+    "group/:group_id/delete": "\\Groups\\Controller\\Group\\Delete",
+    "addgroup"              : "\\Groups\\Controller\\Group\\Add",
+    "savegroup"             : "\\Groups\\Controller\\Group\\Save",
+
+    "config"    : "\\System\\Controller\\Config",
+    "saveconfig": "\\System\\Controller\\Config\\Save",
+    "phpinfo"   : "\\System\\Controller\\PhpInfo"
+}

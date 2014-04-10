@@ -1,0 +1,72 @@
+{# Copyright (C) 2013 - 2013 Open Source Matters, Inc. All rights reserved. #}
+{# GNU General Public License version 2 or later; see LICENSE.txt #}
+
+{% extends "index.twig" %}
+
+{% block title %}<h1 class="page-title">Groups</h1>{% endblock %}
+
+{% block toolbar %}
+    <a class="btn btn-primary" href="{{ uri.base.path }}addgroup"><i class="icon-plus"></i> {{ "Add Group"|_ }}</a>
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>{{ "Title"|_ }}</th>
+                <th style="width: 5%;">{{ "View"|_ }}</th>
+                <th style="width: 5%;">{{ "Create"|_ }}</th>
+                <th style="width: 5%;">{{ "Edit"|_ }}</th>
+                <th style="width: 5%;">{{ "Manage"|_ }}</th>
+                <th style="width: 10%;">{{ "Actions"|_ }}</th>
+                {% if jdebug %}
+                    <th style="width: 5%;">{{ "Id"|_ }}</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for group in items %}
+            <tr class="{{ group.system ? "info" : "" }}">
+                <td>
+                    <a href="{{ uri.base.path }}group/{{ group.group_id }}">{{ group.title }}</a>
+                </td>
+
+                <td class="{{ group.can_view ? "alert-success" : "alert-error" }}">
+                    {{ group.can_view|yesno }}
+                </td>
+                <td class="{{ group.can_create ? "alert-success" : "alert-error" }}">
+                    {{ group.can_create|yesno }}
+                </td>
+                <td class="{{ group.can_edit ? "alert-success" : "alert-error" }}">
+                    {{ group.can_edit|yesno }}
+                </td>
+                <td class="{{ group.can_manage ? "alert-success" : "alert-error" }}">
+                    {{ group.can_manage|yesno }}
+                </td>
+
+                <td>
+                    {% if group.system %}
+                        {{ "System"|_ }}
+                    {% else %}
+                        <a href="{{ uri.base.path }}group/{{ group.group_id }}/delete">
+                            {{ "Delete"|_ }}
+                        </a>
+                    {% endif %}
+                </td>
+
+                {% if jdebug %}
+                    <td>{{ group.group_id }}</td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">
+                    <div class="alert alert-error">{{ "No groups defined !"|_ }}</div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

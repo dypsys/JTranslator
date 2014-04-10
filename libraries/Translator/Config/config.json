@@ -1,0 +1,35 @@
+{
+    "database": {
+        "driver": "mysql",
+        "host": "localhost",
+        "user": "root",
+        "password": "root",
+        "name": "translator",
+        "prefix": "trt_"
+    },
+
+    "renderer": {
+        "type" : "twig",
+        "debug": "0"
+    },
+
+    "system": {
+        "list_limit": "20",
+        "gzip"      : "0",
+        "offset"    : "UTC"
+    },
+
+    "debug": {
+        "system"  : "0",
+        "database": "0",
+        "language": "0",
+        "hooks"   : "0",
+        "logging" : "0",
+        "log-path": "logs",
+        "admin"   : "1"
+    },
+
+    "languages": [
+        "es-ES", "en-GB", "de-DE", "fr-FR"
+    ]
+}
